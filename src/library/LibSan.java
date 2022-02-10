@@ -30,7 +30,7 @@ public class LibSan {
 	public static void readFromAnyTextFileWithJFileChooserForJTextArea(JTextArea printTo) {
 
 		
-		String text = "";
+	
 		
 		JFileChooser chooser=new JFileChooser();
 		chooser.showOpenDialog(chooser);
@@ -38,6 +38,7 @@ public class LibSan {
 		
 		File file = new File(chooser.getSelectedFile().toString());
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(file);
 			
 			while(scanner.hasNextLine()) {

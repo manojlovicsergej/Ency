@@ -1,38 +1,23 @@
 package gnu;
 
 import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
-
 import library.LibSan;
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
-
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.border.LineBorder;
-
 import classes.MainFrameFunctions;
-
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -56,7 +41,7 @@ public class MainFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton buttonAES;
 	
-	public String selectedButton="";
+	public static String selectedButton="";
 	public static boolean crypted = false;
 	/**
 	 * Launch the application.
@@ -189,6 +174,31 @@ public class MainFrame {
 		labelClose.setHorizontalAlignment(SwingConstants.CENTER);
 		labelClose.setForeground(Color.WHITE);
 		labelClose.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		
+		JButton btnImgEncryption = new JButton("  IMG ENCRYPTION  ");
+		btnImgEncryption.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(selectedButton.equals("")) {
+					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
+				}
+				else {
+					
+					if(selectedButton.equals("AES256")) {
+						
+						AESImageMenu aesimagemenu = new AESImageMenu();
+						aesimagemenu.setVisible(true);
+						
+					}
+				}
+			}
+		});
+		btnImgEncryption.setToolTipText("Image encryption");
+		btnImgEncryption.setForeground(Color.WHITE);
+		btnImgEncryption.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnImgEncryption.setFocusable(false);
+		btnImgEncryption.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnImgEncryption.setBackground(new Color(13, 22, 44));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -196,21 +206,20 @@ public class MainFrame {
 					.addGap(43)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-							.addGap(1562))
+							.addComponent(buttonAES, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addGap(1323)
+							.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(labelEncrypt)
-										.addComponent(labelDecrypt, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-										.addComponent(labelClose, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-									.addGap(12)
-									.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE))
-								.addComponent(panelHead, GroupLayout.DEFAULT_SIZE, 1633, Short.MAX_VALUE))
-							.addGap(52))))
+								.addComponent(labelEncrypt)
+								.addComponent(labelDecrypt, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(labelClose, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+							.addGap(12)
+							.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE))
+						.addComponent(panelHead, GroupLayout.DEFAULT_SIZE, 1633, Short.MAX_VALUE))
+					.addGap(52))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -220,7 +229,9 @@ public class MainFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
-							.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+								.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
