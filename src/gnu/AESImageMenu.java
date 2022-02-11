@@ -34,6 +34,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.util.Base64;
+import java.util.Random;
 
 public class AESImageMenu extends JDialog {
 
@@ -251,7 +252,57 @@ public class AESImageMenu extends JDialog {
 		btnDecrypt.setBackground(Color.GREEN);
 		btnDecrypt.setBounds(470, 419, 118, 39);
 		panel.add(btnDecrypt);
+		
+		JButton btnGenerate = new JButton("GENERATE");
+		btnGenerate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				generateBase64Key16BitsInLenth();
+				
+			}
+		});
+		btnGenerate.setToolTipText("");
+		btnGenerate.setForeground(Color.WHITE);
+		btnGenerate.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnGenerate.setFocusable(false);
+		btnGenerate.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnGenerate.setBackground(new Color(13, 22, 44));
+		btnGenerate.setBounds(598, 230, 118, 39);
+		panel.add(btnGenerate);
 	}
+	
+	public static void generateBase64Key16BitsInLenth() {
+		
+	    String originalInput = String.valueOf(geek_Password(24));
+	    String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+	    textArea.setText(encodedString);
+
+		
+	}
+	
+	static char[] geek_Password(int len)
+    {
+  
+        String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String Small_chars = "abcdefghijklmnopqrstuvwxyz";
+  
+  
+        String values = Capital_chars + Small_chars;
+
+        Random rndm_method = new Random();
+  
+        char[] password = new char[len];
+  
+        for (int i = 0; i < len; i++)
+        {
+           
+            password[i] =
+              values.charAt(rndm_method.nextInt(values.length()));
+  
+        }
+        return password;
+    }
 	
 	public static void encryptImageAES(String filePath) throws NoSuchAlgorithmException, IOException {
 		
