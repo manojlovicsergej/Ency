@@ -122,10 +122,7 @@ public class MainFrame {
 					}
 				}
 				
-				
-				
-				
-				
+
 			}
 		});
 		labelEncrypt.setIcon(new ImageIcon(new ImageIcon("images/icons/locked.png").getImage().getScaledInstance(30,30, Image.SCALE_DEFAULT)));
