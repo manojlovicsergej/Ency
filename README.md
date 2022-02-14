@@ -1,7 +1,7 @@
 # Ency
 Software for encrypting your data.
 
-Simple and easy way to encrypt your data. If you want a setup .exe file you can download it at: https://mega.nz/file/WGonTITI#KCV68Enl6cx8z4a6DNrqgaDK41UoF_il5nFhqMumZhI  
+Simple and easy way to encrypt your data. If you want a setup .exe file you can download it at: https://mega.nz/file/3Hx1gSaD#hJ_7amtmU_3oIvweJip5YVOcbskf5o5Kpu4O9cTgaHM  
 
 Version review :
 
