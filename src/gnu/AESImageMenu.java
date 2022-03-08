@@ -201,7 +201,6 @@ public class AESImageMenu extends JDialog {
 					if (filesInDirectory.size() == 0) {
 						try {
 							encryptImageAES(textAreaListOfImages.getText().trim());
-							JOptionPane.showMessageDialog(null, "Successful !");
 						} catch (NoSuchAlgorithmException e1) {
 							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(null, "Failure !");
@@ -247,9 +246,7 @@ public class AESImageMenu extends JDialog {
 					if(filesInDirectory.size() ==0) {
 						try {
 							decryptImageAES(textAreaListOfImages.getText().trim());
-							JOptionPane.showMessageDialog(null, "Successful !");
-							Desktop.getDesktop().open(new File(textAreaListOfImages.getText().trim()));
-							
+
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(null, "Failure !");
@@ -369,6 +366,8 @@ public class AESImageMenu extends JDialog {
 
 		AES256ImageEncryption.saveFile(encrypted, filePath);
 		
+		JOptionPane.showMessageDialog(null, "Successful !");
+		
 		resetFields();
 	}
 
@@ -385,6 +384,8 @@ public class AESImageMenu extends JDialog {
 		System.out.println(decrypted);
 
 		AES256ImageEncryption.saveFile(decrypted, filePath);
+		
+		JOptionPane.showMessageDialog(null, "Successful !");
 		
 		resetFields();
 	}
@@ -404,6 +405,8 @@ public class AESImageMenu extends JDialog {
 
 			AES256ImageEncryption.saveFile(encrypted, file.getAbsolutePath());
 		}
+		
+		JOptionPane.showMessageDialog(null, "Successful !");
 		
 		resetFields();
 	}
@@ -425,8 +428,13 @@ public class AESImageMenu extends JDialog {
 
 		}
 		
-		for(File file : filesInDirectory) {
-			Desktop.getDesktop().open(file.getAbsoluteFile());
+		
+		int dialogButton = JOptionPane.YES_NO_OPTION;
+		int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to open all of yours decrypted photos now ?", "Show photos?", dialogButton);
+		if(dialogResult == 0) {
+			for(File file : filesInDirectory) {
+				Desktop.getDesktop().open(file.getAbsoluteFile());
+			}
 		}
 		
 		resetFields();
