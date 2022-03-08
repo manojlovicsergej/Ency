@@ -196,6 +196,31 @@ public class MainFrame {
 		btnImgEncryption.setFocusable(false);
 		btnImgEncryption.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
 		btnImgEncryption.setBackground(new Color(13, 22, 44));
+		
+		JButton btnPdfEncrption = new JButton("PDF ENCRYPTION");
+		btnPdfEncrption.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(selectedButton.equals("")) {
+					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
+				}
+				else {
+					
+					if(selectedButton.equals("AES256")) {
+						
+						AESPdfMenu aespdfmenu = new AESPdfMenu();
+						aespdfmenu.setVisible(true);
+						
+					}
+				}
+			}
+		});
+		btnPdfEncrption.setToolTipText("PDF encryption");
+		btnPdfEncrption.setForeground(Color.WHITE);
+		btnPdfEncrption.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnPdfEncrption.setFocusable(false);
+		btnPdfEncrption.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnPdfEncrption.setBackground(new Color(13, 22, 44));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -204,8 +229,10 @@ public class MainFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(buttonAES, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(1323)
-							.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(1130)
+							.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -227,9 +254,14 @@ public class MainFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-								.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
-							.addGap(18)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+										.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+									.addGap(18))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+									.addGap(18)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
 								.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)))
