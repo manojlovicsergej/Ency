@@ -34,6 +34,8 @@ import javax.swing.JScrollPane;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Random;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AESPdfMenu extends JDialog {
 
@@ -101,6 +103,8 @@ public class AESPdfMenu extends JDialog {
 				MainFrameFunctions.opentxtFile(textArea);
 			}
 		});
+		
+
 
 		btnOpen.setToolTipText("");
 		btnOpen.setForeground(Color.WHITE);
@@ -198,7 +202,7 @@ public class AESPdfMenu extends JDialog {
 
 				if (MainFrame.selectedButton.equals("AES256")) {
 
-					
+					if(filesInDirectory.size()==0) {
 						try {
 							encryptImageAES(textAreaListOfImages.getText().trim());
 							JOptionPane.showMessageDialog(null, "Successful !");
@@ -211,7 +215,18 @@ public class AESPdfMenu extends JDialog {
 							JOptionPane.showMessageDialog(null, "Failure !");
 							e1.printStackTrace();
 						}
-					
+					}
+					else {
+						try {
+							encryptFolderOfImagesAES();
+						} catch (NoSuchAlgorithmException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
 
 				}
 
@@ -232,7 +247,7 @@ public class AESPdfMenu extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				if (MainFrame.selectedButton.equals("AES256")) {
 					
-					
+					if(filesInDirectory.size() == 0) {
 						try {
 							decryptImageAES(textAreaListOfImages.getText().trim());
 							JOptionPane.showMessageDialog(null, "Successful !");
@@ -243,7 +258,15 @@ public class AESPdfMenu extends JDialog {
 							JOptionPane.showMessageDialog(null, "Failure !");
 							e1.printStackTrace();
 						}
-					
+					}
+					else {
+						try {
+							decryptFolderOfImagesAES();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
 					
 				}
 			}
@@ -274,6 +297,37 @@ public class AESPdfMenu extends JDialog {
 		btnGenerate.setBackground(new Color(13, 22, 44));
 		btnGenerate.setBounds(598, 230, 118, 39);
 		panel.add(btnGenerate);
+		
+		JButton btnOpen_1_1 = new JButton("<html>LOAD FOLDER</html>");
+		btnOpen_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(chooser);
+				chooser.setVisible(true);
+				
+				File[] files =chooser.getCurrentDirectory().listFiles();
+				
+				for(File file : files){
+					if(file.getAbsoluteFile().toString().contains(".pdf")) {
+						filesInDirectory.add(file);
+					}
+				}
+
+				for (File file : filesInDirectory) {
+					textAreaListOfImages.append(file.getAbsolutePath().toString() + "\n");
+				}
+				
+			}
+		});
+		btnOpen_1_1.setToolTipText("");
+		btnOpen_1_1.setForeground(Color.WHITE);
+		btnOpen_1_1.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnOpen_1_1.setFocusable(false);
+		btnOpen_1_1.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnOpen_1_1.setBackground(new Color(13, 22, 44));
+		btnOpen_1_1.setBounds(161, 469, 130, 39);
+		panel.add(btnOpen_1_1);
 	}
 
 	public static void generateBase64Key16BitsInLenth() {
@@ -336,6 +390,57 @@ public class AESPdfMenu extends JDialog {
 		
 		resetFields();
 	}
+	
+	public static void encryptFolderOfImagesAES() throws NoSuchAlgorithmException, IOException {
+
+		String keyString = textArea.getText().trim();
+
+		byte[] decodedKey = Base64.getDecoder().decode(keyString);
+		SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+
+		for (File file : filesInDirectory) {
+			byte content[] = AES256ImageEncryption.getFile(file.getAbsolutePath());
+			System.out.println(content);
+			byte encrypted[] = AES256ImageEncryption.encryptImageFile(originalKey, content);
+			System.out.println(encrypted);
+
+			AES256ImageEncryption.saveFile(encrypted, file.getAbsolutePath());
+		}
+		
+		JOptionPane.showMessageDialog(null, "Successful !");
+		
+		resetFields();
+	}
+
+	public static void decryptFolderOfImagesAES() throws IOException {
+
+		String keyString = textArea.getText().trim();
+
+		byte[] decodedKey = Base64.getDecoder().decode(keyString);
+		SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+
+		for (File file : filesInDirectory) {
+			byte content[] = AES256ImageEncryption.getFile(file.getAbsolutePath());
+			System.out.println(content);
+			byte[] decrypted = AES256ImageEncryption.decryptImageFile(originalKey, content);
+			System.out.println(decrypted);
+
+			AES256ImageEncryption.saveFile(decrypted, file.getAbsolutePath());
+
+		}
+		
+		
+		int dialogButton = JOptionPane.YES_NO_OPTION;
+		int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to open all of yours decrypted pdf's now ?", "Show pdf's?", dialogButton);
+		if(dialogResult == 0) {
+			for(File file : filesInDirectory) {
+				Desktop.getDesktop().open(file.getAbsoluteFile());
+			}
+		}
+		
+		resetFields();
+		
+	}
 
 	
 	public static void resetFields() {
@@ -343,5 +448,4 @@ public class AESPdfMenu extends JDialog {
 		textAreaListOfImages.setText("");
 		textArea.setText("");
 	}
-
 }
