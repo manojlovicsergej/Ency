@@ -9,6 +9,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -28,7 +30,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.ButtonGroup;
 
 public class MainFrame {
-
+	
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static double width = screenSize.getWidth();
+	static double height = screenSize.getHeight();
+	
+	
 	private JFrame frame;
 	private double percentSize=0.9;
 	public Border borderLineForPanel = BorderFactory.createLineBorder(new Color(72,89,118), 1);
@@ -50,8 +57,14 @@ public class MainFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame window = new MainFrame();
-					window.frame.setVisible(true);
+					if(width>=1920 && height<=1080) {
+						MainFrame window = new MainFrame();
+						window.frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Your resolution has to be at least 1920x1080px !");
+					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
