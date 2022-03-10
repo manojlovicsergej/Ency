@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 
@@ -29,7 +30,7 @@ public class LibSan {
 	}
 	public static void readFromAnyTextFileWithJFileChooserForJTextArea(JTextArea printTo) {
 
-		
+		int numberOfLines = 0;
 	
 		
 		JFileChooser chooser=new JFileChooser();
@@ -43,10 +44,18 @@ public class LibSan {
 			
 			while(scanner.hasNextLine()) {
 				
-				String data = scanner.nextLine();
+				if(numberOfLines<=6500) {
+					String data = scanner.nextLine();
+					
+					printTo.append(data+"\n");
+					numberOfLines++;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Txt file loading size is 6500 lines !");
+					break;
+				}
+
 				
-				printTo.append(data);
-				 
 			}
 			
 		} catch (FileNotFoundException e) {
