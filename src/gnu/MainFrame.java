@@ -14,10 +14,15 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.border.LineBorder;
 import classes.MainFrameFunctions;
 import javax.swing.JLabel;
@@ -35,7 +40,7 @@ public class MainFrame {
 	static double width = screenSize.getWidth();
 	static double height = screenSize.getHeight();
 	
-	
+	public static ArrayList<File> filesInDirectory = new ArrayList<File>();
 	private JFrame frame;
 	private double percentSize=0.9;
 	public Border borderLineForPanel = BorderFactory.createLineBorder(new Color(72,89,118), 1);
@@ -318,30 +323,46 @@ public class MainFrame {
 		
 		JScrollPane scrollPaneDecrypt = new JScrollPane();
 		scrollPaneDecrypt.setBorder(null);
+		
+		JButton btnTxtFolderEncryption_1 = new JButton("TXT FOLDER DECRYPTION");
+		btnTxtFolderEncryption_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtFolderEncryption(textAreaDecrypt);
+			}
+		});
+		btnTxtFolderEncryption_1.setToolTipText("");
+		btnTxtFolderEncryption_1.setForeground(Color.WHITE);
+		btnTxtFolderEncryption_1.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnTxtFolderEncryption_1.setFocusable(false);
+		btnTxtFolderEncryption_1.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnTxtFolderEncryption_1.setBackground(new Color(13, 22, 44));
 		GroupLayout gl_panelDecrypt = new GroupLayout(panelDecrypt);
 		gl_panelDecrypt.setHorizontalGroup(
 			gl_panelDecrypt.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDecrypt.createSequentialGroup()
-					.addGroup(gl_panelDecrypt.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDecrypt.createSequentialGroup()
-							.addGap(32)
-							.addComponent(btnSave_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(btnOpen_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panelDecrypt.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPaneDecrypt, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)))
+					.addContainerGap()
+					.addComponent(scrollPaneDecrypt)
 					.addContainerGap())
+				.addGroup(gl_panelDecrypt.createSequentialGroup()
+					.addGap(32)
+					.addComponent(btnSave_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(btnOpen_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+					.addComponent(btnTxtFolderEncryption_1, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
+					.addGap(29))
 		);
 		gl_panelDecrypt.setVerticalGroup(
-			gl_panelDecrypt.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelDecrypt.createSequentialGroup()
+			gl_panelDecrypt.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panelDecrypt.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPaneDecrypt, GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+					.addComponent(scrollPaneDecrypt, GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
 					.addGap(18)
 					.addGroup(gl_panelDecrypt.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnSave_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpen_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnOpen_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnTxtFolderEncryption_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 					.addGap(23))
 		);
 		
@@ -384,29 +405,46 @@ public class MainFrame {
 		
 		JScrollPane scrollPaneEncrypt = new JScrollPane();
 		scrollPaneEncrypt.setBorder(null);
+		
+		JButton btnTxtFolderEncryption = new JButton("TXT FOLDER ENCRYPTION");
+		btnTxtFolderEncryption.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtFolderEncryption(textAreaEncrypt);
+			}
+		});
+		btnTxtFolderEncryption.setToolTipText("");
+		btnTxtFolderEncryption.setForeground(Color.WHITE);
+		btnTxtFolderEncryption.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnTxtFolderEncryption.setFocusable(false);
+		btnTxtFolderEncryption.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnTxtFolderEncryption.setBackground(new Color(13, 22, 44));
 		GroupLayout gl_panelEncrypt = new GroupLayout(panelEncrypt);
 		gl_panelEncrypt.setHorizontalGroup(
 			gl_panelEncrypt.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelEncrypt.createSequentialGroup()
-					.addGroup(gl_panelEncrypt.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelEncrypt.createSequentialGroup()
-							.addGap(27)
-							.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-							.addGap(28)
-							.addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panelEncrypt.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPaneEncrypt, GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)))
+					.addContainerGap()
+					.addComponent(scrollPaneEncrypt)
 					.addContainerGap())
+				.addGroup(gl_panelEncrypt.createSequentialGroup()
+					.addGap(27)
+					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+					.addComponent(btnTxtFolderEncryption, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
+					.addGap(24))
 		);
 		gl_panelEncrypt.setVerticalGroup(
-			gl_panelEncrypt.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panelEncrypt.createSequentialGroup()
+			gl_panelEncrypt.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panelEncrypt.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPaneEncrypt, GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+					.addComponent(scrollPaneEncrypt, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
 					.addGap(18)
 					.addGroup(gl_panelEncrypt.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panelEncrypt.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnTxtFolderEncryption, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 					.addGap(22))
 		);
@@ -474,5 +512,23 @@ public class MainFrame {
 		buttonAES.setForeground(Color.WHITE);
 		buttonAES.setBackground(backgroundPanel);
 		
+	}
+	
+	public static void txtFolderEncryption(JTextArea textArea) {
+		JFileChooser chooser = new JFileChooser();
+		chooser.showOpenDialog(chooser);
+		chooser.setVisible(true);
+		
+		File[] files =chooser.getCurrentDirectory().listFiles();
+		
+		for(File file : files){
+			if(file.getAbsoluteFile().toString().contains(".txt")) {
+				filesInDirectory.add(file);
+			}
+		}
+
+		for (File file : filesInDirectory) {
+			textArea.append(file.getAbsolutePath().toString() + "\n");
+		}
 	}
 }
