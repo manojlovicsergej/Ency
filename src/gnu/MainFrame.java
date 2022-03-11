@@ -239,6 +239,19 @@ public class MainFrame {
 		btnPdfEncrption.setFocusable(false);
 		btnPdfEncrption.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
 		btnPdfEncrption.setBackground(new Color(13, 22, 44));
+		
+		JButton btnLockdown = new JButton("<html>LOCKDOWN</html>");
+		btnLockdown.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		btnLockdown.setToolTipText("COMPLETE LOCKDOWN");
+		btnLockdown.setForeground(Color.WHITE);
+		btnLockdown.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnLockdown.setFocusable(false);
+		btnLockdown.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnLockdown.setBackground(Color.RED);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -247,7 +260,9 @@ public class MainFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(buttonAES, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(1130)
+							.addGap(592)
+							.addComponent(btnLockdown, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+							.addGap(355)
 							.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
@@ -268,23 +283,23 @@ public class MainFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(31)
 					.addComponent(panelHead, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-										.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
-									.addGap(18))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-									.addGap(18)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-								.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)))
+								.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+								.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+								.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+							.addGap(18))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(301)
+							.addComponent(btnLockdown, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+							.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(224)
 							.addComponent(labelEncrypt, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(labelDecrypt, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
