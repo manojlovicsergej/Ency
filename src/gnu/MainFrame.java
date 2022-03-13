@@ -244,6 +244,8 @@ public class MainFrame {
 		btnLockdown.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				LockdownFrame lf = new LockdownFrame();
+				lf.setVisible(true);
 			}
 		});
 		btnLockdown.setToolTipText("COMPLETE LOCKDOWN");

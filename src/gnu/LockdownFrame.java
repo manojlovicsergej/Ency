@@ -15,6 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import classes.MainFrameFunctions;
+
 import javax.swing.JList;
 import javax.swing.JTextArea;
 
@@ -123,6 +126,12 @@ public class LockdownFrame extends JDialog {
 		panel.add(textArea);
 		
 		JButton btnOpen = new JButton("IMPORT");
+		btnOpen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrameFunctions.opentxtFile(textArea);
+			}
+		});
 		btnOpen.setToolTipText("");
 		btnOpen.setForeground(Color.WHITE);
 		btnOpen.setFont(new Font("Monospaced", Font.BOLD, 17));
@@ -133,6 +142,12 @@ public class LockdownFrame extends JDialog {
 		panel.add(btnOpen);
 		
 		JButton btnGenerate = new JButton("GENERATE");
+		btnGenerate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrameFunctions.generateBase64Key16BitsInLenth(textArea);
+			}
+		});
 		btnGenerate.setToolTipText("");
 		btnGenerate.setForeground(Color.WHITE);
 		btnGenerate.setFont(new Font("Monospaced", Font.BOLD, 17));
@@ -143,6 +158,12 @@ public class LockdownFrame extends JDialog {
 		panel.add(btnGenerate);
 		
 		JButton btnSave = new JButton("SAVE");
+		btnSave.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrameFunctions.saveToTxtFileEncryptWithJTextArea(textArea.getText().trim(), btnSave, textArea);
+			}
+		});
 		btnSave.setToolTipText("");
 		btnSave.setForeground(Color.WHITE);
 		btnSave.setFont(new Font("Monospaced", Font.BOLD, 17));
