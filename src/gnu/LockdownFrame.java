@@ -174,6 +174,11 @@ public class LockdownFrame extends JDialog {
 		panel.add(btnSave);
 		
 		JButton btnEncypt = new JButton("ENCRYPT");
+		btnEncypt.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnEncypt.setToolTipText("");
 		btnEncypt.setForeground(Color.WHITE);
 		btnEncypt.setFont(new Font("Monospaced", Font.BOLD, 17));
@@ -184,6 +189,11 @@ public class LockdownFrame extends JDialog {
 		panel.add(btnEncypt);
 		
 		JButton btnDecrypt = new JButton("DECRYPT");
+		btnDecrypt.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnDecrypt.setToolTipText("");
 		btnDecrypt.setForeground(Color.WHITE);
 		btnDecrypt.setFont(new Font("Monospaced", Font.BOLD, 17));

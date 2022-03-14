@@ -1,6 +1,7 @@
 package gnu;
 
 import java.awt.Color;
+
 import java.awt.Desktop;
 
 import javax.crypto.SecretKey;
@@ -33,7 +34,6 @@ import javax.swing.JScrollPane;
 
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Random;
 
 public class AESImageMenu extends JDialog {
 
@@ -280,7 +280,7 @@ public class AESImageMenu extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				generateBase64Key16BitsInLenth();
+				MainFrameFunctions.generateBase64Key16BitsInLenth(textArea);
 
 			}
 		});
@@ -325,32 +325,7 @@ public class AESImageMenu extends JDialog {
 		panel.add(btnOpen_1_1);
 	}
 
-	public static void generateBase64Key16BitsInLenth() {
 
-		String originalInput = String.valueOf(geek_Password(24));
-		String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
-		textArea.setText(encodedString);
-
-	}
-
-	static char[] geek_Password(int len) {
-
-		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String Small_chars = "abcdefghijklmnopqrstuvwxyz";
-
-		String values = Capital_chars + Small_chars;
-
-		Random rndm_method = new Random();
-
-		char[] password = new char[len];
-
-		for (int i = 0; i < len; i++) {
-
-			password[i] = values.charAt(rndm_method.nextInt(values.length()));
-
-		}
-		return password;
-	}
 
 	public static void encryptImageAES(String filePath) throws NoSuchAlgorithmException, IOException {
 

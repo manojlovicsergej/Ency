@@ -15,9 +15,7 @@ import javax.swing.JTextArea;
 public class LibSan {
 	
 	 static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
- 
 
-	
 	public static int getScreenWidth() {
 		 int width = (int)size.getWidth();
 		return width;
