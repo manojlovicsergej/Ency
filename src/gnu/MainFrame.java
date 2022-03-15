@@ -53,8 +53,11 @@ public class MainFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton buttonAES;
 	
+	//Global variables used to show status of certain activities
 	public static String selectedButton="";
 	public static boolean crypted = false;
+	public static boolean txtFolderCrypted = false;
+	///
 	/**
 	 * Launch the application.
 	 */
@@ -499,5 +502,8 @@ public class MainFrame {
 		for (File file : filesInDirectory) {
 			textArea.append(file.getAbsolutePath().toString() + "\n");
 		}
+		
+		txtFolderCrypted = true;
+		
 	}
 }

@@ -27,20 +27,29 @@ public class MainFrameFunctions {
 		LibSan.readFromAnyTextFileWithJFileChooserForJTextArea(s1);
 	}
 	
+	/////Txt encryption type for specific file or folder of txt files
 	public static void encryptTXTAES(String s1 , JTextArea t1 , String key) {
 
-		
+
 		String ecryptedText = AES256.encrypt(s1, key);
 		t1.setText(ecryptedText);
 		
 	}
-	
+	public static void encryptTXTFolderAES() {
+		
+	}
 	public static void decryptTXTAES(String s1 , JTextArea t1 , String key) {
 		
 		String decryptedText = AES256.decrypt(s1, key);
 		t1.setText(decryptedText);
 		
 	}
+	public static void decryptTXTFolderAES() {
+		
+	}
+	/////
+	
+	
 	
 	public static void saveToTxtFileEncryptWithJTextArea(String s,JButton b,JTextArea t) {
 		JFileChooser fileChooser = new JFileChooser();
@@ -95,6 +104,7 @@ public class MainFrameFunctions {
 	
 	//Txt encryption type chooser
 	public static void checkTxtEncryptionType() {
+
 		
 		if(MainFrame.selectedButton.equals("")) {
 			JOptionPane.showMessageDialog(null, "Choose type of encryption !");

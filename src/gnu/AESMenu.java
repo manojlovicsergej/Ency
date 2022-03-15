@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
@@ -124,11 +125,24 @@ public class AESMenu extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				if(MainFrame.crypted) {
+				if(MainFrame.crypted==true && MainFrame.txtFolderCrypted == false) {
 					MainFrameFunctions.encryptTXTAES(MainFrame.textAreaEncrypt.getText().trim(), MainFrame.textAreaDecrypt,textArea.getText().trim());
 				}
-				else {
+				else if(MainFrame.crypted==false && MainFrame.txtFolderCrypted == false){
 					MainFrameFunctions.decryptTXTAES(MainFrame.textAreaDecrypt.getText().trim(), MainFrame.textAreaEncrypt,textArea.getText().trim());
+				}
+				
+				if(MainFrame.crypted==true && MainFrame.txtFolderCrypted == true) {
+					MainFrameFunctions.encryptTXTFolderAES();
+					
+					JOptionPane.showMessageDialog(null,"Files have been encrypted !");
+					MainFrame.txtFolderCrypted = false;
+				}
+				else if(MainFrame.crypted==false && MainFrame.txtFolderCrypted == true) {
+					MainFrameFunctions.decryptTXTFolderAES();
+					
+					JOptionPane.showMessageDialog(null,"Files have been decrypted !");
+					MainFrame.txtFolderCrypted = false;
 				}
 
 				dispose();
