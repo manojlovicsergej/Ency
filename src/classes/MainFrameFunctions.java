@@ -12,8 +12,13 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import algorithms.AES256;
+import gnu.AESImageMenu;
+import gnu.AESMenu;
+import gnu.AESPdfMenu;
+import gnu.MainFrame;
 import library.LibSan;
 
 public class MainFrameFunctions {
@@ -87,6 +92,74 @@ public class MainFrameFunctions {
 		}
 		return password;
 	}
+	
+	//Txt encryption type chooser
+	public static void checkTxtEncryptionType() {
+		
+		if(MainFrame.selectedButton.equals("")) {
+			JOptionPane.showMessageDialog(null, "Choose type of encryption !");
+		}
+		else {
+			
+			if(MainFrame.selectedButton.equals("AES256")) {
+				MainFrame.crypted = true;
+				AESMenu as = new AESMenu();
+				as.setVisible(true);
+				
+			}
+		}
+		
+		
+	}
+	public static void checkTxtDecryptionType() {
+		
+		if(MainFrame.selectedButton.equals("")) {
+			JOptionPane.showMessageDialog(null, "Choose type of decryption !");
+		}
+		else {
+			
+			if(MainFrame.selectedButton.equals("AES256")) {
+				MainFrame.crypted = false;
+				AESMenu as = new AESMenu();
+				as.setVisible(true);
+				
+			}
+		}
+	}
+	
+	
+	//Pdf and image encryption type chooser
+	public static void checkPdfEncryptionType() {
+		if(MainFrame.selectedButton.equals("")) {
+			JOptionPane.showMessageDialog(null, "Choose type of encryption !");
+		}
+		else {
+			
+			if(MainFrame.selectedButton.equals("AES256")) {
+				
+				AESPdfMenu aespdfmenu = new AESPdfMenu();
+				aespdfmenu.setVisible(true);
+				
+			}
+		}
+	}
+
+	public static void checkImgEncryptionType() {
+		if(MainFrame.selectedButton.equals("")) {
+			JOptionPane.showMessageDialog(null, "Choose type of encryption !");
+		}
+		else {
+			
+			if(MainFrame.selectedButton.equals("AES256")) {
+				
+				AESImageMenu aesimagemenu = new AESImageMenu();
+				aesimagemenu.setVisible(true);
+				
+			}
+		}
+		
+	}
+	
 	
 	
 }

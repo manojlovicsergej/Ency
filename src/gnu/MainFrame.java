@@ -90,9 +90,7 @@ public class MainFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(5,13,32));
-		
-		
-		
+
 		
 		JPanel panelHead = new JPanel();
 		panelHead.setBackground(backgroundPanel);
@@ -126,21 +124,7 @@ public class MainFrame {
 		labelEncrypt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				if(selectedButton.equals("")) {
-					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
-				}
-				else {
-					
-					if(selectedButton.equals("AES256")) {
-						crypted = true;
-						AESMenu as = new AESMenu();
-						as.setVisible(true);
-						
-					}
-				}
-				
-
+				MainFrameFunctions.checkTxtEncryptionType();
 			}
 		});
 		labelEncrypt.setIcon(new ImageIcon(new ImageIcon("images/icons/locked.png").getImage().getScaledInstance(30,30, Image.SCALE_DEFAULT)));
@@ -152,21 +136,7 @@ public class MainFrame {
 		labelDecrypt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				if(selectedButton.equals("")) {
-					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
-				}
-				else {
-					
-					if(selectedButton.equals("AES256")) {
-						crypted = false;
-						AESMenu as = new AESMenu();
-						as.setVisible(true);
-						
-					}
-				}
-				
-				
+				MainFrameFunctions.checkTxtDecryptionType();
 			}
 		});
 		labelDecrypt.setIcon(new ImageIcon(new ImageIcon("images/icons/unlocked.png").getImage().getScaledInstance(30,30, Image.SCALE_DEFAULT)));
@@ -178,9 +148,7 @@ public class MainFrame {
 		labelClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textAreaEncrypt.setText("");
-				textAreaDecrypt.setText("");
-				selectedButton="";
+				resetTxtFields();
 				resetButtonsLook();
 			}
 
@@ -194,18 +162,7 @@ public class MainFrame {
 		btnImgEncryption.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(selectedButton.equals("")) {
-					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
-				}
-				else {
-					
-					if(selectedButton.equals("AES256")) {
-						
-						AESImageMenu aesimagemenu = new AESImageMenu();
-						aesimagemenu.setVisible(true);
-						
-					}
-				}
+				MainFrameFunctions.checkImgEncryptionType();
 			}
 		});
 		btnImgEncryption.setToolTipText("Image encryption");
@@ -219,18 +176,7 @@ public class MainFrame {
 		btnPdfEncrption.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(selectedButton.equals("")) {
-					JOptionPane.showMessageDialog(null, "Choose type of encryption !");
-				}
-				else {
-					
-					if(selectedButton.equals("AES256")) {
-						
-						AESPdfMenu aespdfmenu = new AESPdfMenu();
-						aespdfmenu.setVisible(true);
-						
-					}
-				}
+				MainFrameFunctions.checkPdfEncryptionType();
 			}
 		});
 		btnPdfEncrption.setToolTipText("PDF encryption");
@@ -529,6 +475,12 @@ public class MainFrame {
 		buttonAES.setForeground(Color.WHITE);
 		buttonAES.setBackground(backgroundPanel);
 		
+	}
+	
+	public void resetTxtFields() {
+		textAreaEncrypt.setText("");
+		textAreaDecrypt.setText("");
+		selectedButton="";
 	}
 	
 	public static void txtFolderEncryption(JTextArea textArea) {
