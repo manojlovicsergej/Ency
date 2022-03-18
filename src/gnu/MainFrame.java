@@ -51,7 +51,9 @@ public class MainFrame {
 	public Color foregroundFont = new Color(99,116,151);
 	public static BufferedImage img;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	
 	private JButton buttonAES;
+	private JButton btnOtp ;
 	
 	//Global variables used to show status of certain activities
 	public static String selectedButton="";
@@ -203,6 +205,22 @@ public class MainFrame {
 		btnLockdown.setFocusable(false);
 		btnLockdown.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
 		btnLockdown.setBackground(Color.RED);
+		
+		btnOtp = new JButton("OTP");
+		btnOtp.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				chooseThatButton(btnOtp);
+				selectedButton="OTP";
+
+			}
+		});
+		btnOtp.setToolTipText("One Time Pad encryption algortithm");
+		btnOtp.setForeground(Color.WHITE);
+		btnOtp.setFont(new Font("Monospaced", Font.BOLD, 17));
+		btnOtp.setFocusable(false);
+		btnOtp.setBorder(new LineBorder(new Color(72, 89, 118), 1, true));
+		btnOtp.setBackground(new Color(13, 22, 44));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -210,8 +228,10 @@ public class MainFrame {
 					.addGap(43)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(buttonAES, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(592)
+							.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnOtp, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+							.addGap(455)
 							.addComponent(btnLockdown, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
 							.addGap(355)
 							.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
@@ -237,24 +257,27 @@ public class MainFrame {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-								.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-								.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+							.addComponent(btnOtp, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
 							.addGap(18))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnLockdown, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-							.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(buttonAES, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+									.addComponent(btnImgEncryption, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+									.addComponent(btnPdfEncrption, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+								.addGap(18))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(btnLockdown, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED))))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelDecrypt, GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+						.addComponent(panelEncrypt, GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(224)
 							.addComponent(labelEncrypt, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(labelDecrypt, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
 							.addComponent(labelClose, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
 					.addGap(42))
 		);
@@ -465,9 +488,6 @@ public class MainFrame {
 	
 	public void chooseThatButton(JButton b) {
 
-		buttonAES.setForeground(Color.WHITE);
-		buttonAES.setBackground(backgroundPanel);
-
 		b.setForeground(foregroundFont);
 		b.setBackground(Color.WHITE);
 		
@@ -477,6 +497,8 @@ public class MainFrame {
 		// TODO Auto-generated method stub
 		buttonAES.setForeground(Color.WHITE);
 		buttonAES.setBackground(backgroundPanel);
+		btnOtp.setForeground(Color.WHITE);
+		btnOtp.setBackground(backgroundPanel);
 		
 	}
 	

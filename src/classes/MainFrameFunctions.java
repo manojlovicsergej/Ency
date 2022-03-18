@@ -117,6 +117,12 @@ public class MainFrameFunctions {
 				as.setVisible(true);
 				
 			}
+			if(MainFrame.selectedButton.equals("OTP")) {
+				JOptionPane.showMessageDialog(null, "IN PROGRESS !");
+			}
+			
+			
+			
 		}
 		
 		
@@ -133,6 +139,9 @@ public class MainFrameFunctions {
 				AESMenu as = new AESMenu();
 				as.setVisible(true);
 				
+			}
+			if(MainFrame.selectedButton.equals("OTP")) {
+				JOptionPane.showMessageDialog(null, "IN PROGRESS !");
 			}
 		}
 	}
@@ -151,6 +160,9 @@ public class MainFrameFunctions {
 				aespdfmenu.setVisible(true);
 				
 			}
+			if(MainFrame.selectedButton.equals("OTP")) {
+				JOptionPane.showMessageDialog(null, "There is no option for OTP pdf encryption !");
+			}
 		}
 	}
 
@@ -165,6 +177,9 @@ public class MainFrameFunctions {
 				AESImageMenu aesimagemenu = new AESImageMenu();
 				aesimagemenu.setVisible(true);
 				
+			}
+			if(MainFrame.selectedButton.equals("OTP")) {
+				JOptionPane.showMessageDialog(null, "There is no option for OTP pdf encryption !");
 			}
 		}
 		
